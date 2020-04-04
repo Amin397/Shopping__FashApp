@@ -21,7 +21,30 @@ class _ProductsState extends State<Products> {
       "old_price": 100,
       "price": 80,
     },
-
+    {
+      "name": "pants",
+      "picture": "images/products/pants1.jpg",
+      "old_price": 100,
+      "price": 80,
+    },
+    {
+      "name": "Hill",
+      "picture": "images/products/hills1.jpeg",
+      "old_price": 100,
+      "price": 80,
+    },
+    {
+      "name": "Shoe",
+      "picture": "images/products/hills2.jpeg",
+      "old_price": 100,
+      "price": 80,
+    },
+    {
+      "name": "Other",
+      "picture": "images/products/dress2.jpeg",
+      "old_price": 100,
+      "price": 80,
+    },
   ];
 
   @override
@@ -57,38 +80,27 @@ class Single_Prod extends StatelessWidget {
             child: InkWell(
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                   builder: (context) => new ProductDetails(
-                    prod_name ,
-                    prod_pic,
-                    prod_Oprice,
-                    prod_price
-                  ))),
+                      prod_name, prod_pic, prod_Oprice, prod_price))),
               child: GridTile(
                   footer: Container(
-                    color: Colors.white70,
-                    child: ListTile(
-                      leading: Text(
-                        prod_name,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 24.0),
-                        textAlign: TextAlign.center,
-                      ),
-                      title: Text(
-                        "\$$prod_price",
-                        style: TextStyle(
-                            fontSize: 28.0,
-                            color: Colors.pink,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(
-                        "\$$prod_Oprice",
-                        style: TextStyle(
-                          fontSize: 24.0,
-                          color: Colors.black54,
-                          decoration: TextDecoration.lineThrough,
-                        ),
-                      ),
-                    ),
-                  ),
+                      color: Colors.white,
+                      child: new Row(
+                        children: <Widget>[
+                          Expanded(
+                              child: Text(
+                            prod_name,
+                            style: TextStyle(
+                                fontSize: 28.0, fontWeight: FontWeight.bold),
+                          )),
+                          new Text(
+                            "\$${prod_price}",
+                            style: TextStyle(
+                                color: Colors.green,
+                                fontSize: 26.0,
+                                fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      )),
                   child: Image.asset(
                     prod_pic,
                     fit: BoxFit.cover,

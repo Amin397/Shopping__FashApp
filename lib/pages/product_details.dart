@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shoppingyou/components/products.dart';
 
 class ProductDetails extends StatefulWidget {
   final product_details_name;
@@ -21,14 +22,9 @@ class _ProductDetailsState extends State<ProductDetails> {
       appBar: new AppBar(
         elevation: 0.1,
         backgroundColor: Colors.red,
+        centerTitle: true,
         title: Text(widget.product_details_name),
         actions: <Widget>[
-          new IconButton(
-              icon: Icon(
-                Icons.search,
-                color: Colors.white,
-              ),
-              onPressed: () {}),
           new IconButton(
               icon: Icon(
                 Icons.shopping_cart,
@@ -258,12 +254,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                 padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                 child: new Text(
                   'Product name',
-                  style: TextStyle(fontSize: 20.0,color: Colors.grey),
+                  style: TextStyle(fontSize: 20.0, color: Colors.grey),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.all(15.0),
-                child: new Text(widget.product_details_name , style: TextStyle(fontSize: 24.0 , fontWeight: FontWeight.bold)),
+                child: new Text(widget.product_details_name,
+                    style:
+                        TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold)),
               ),
             ],
           ),
@@ -273,12 +271,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                 padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                 child: new Text(
                   'Product brand',
-                  style: TextStyle(fontSize: 20.0,color: Colors.grey),
+                  style: TextStyle(fontSize: 20.0, color: Colors.grey),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.all(15.0),
-                child: new Text('Brand X' , style: TextStyle(fontSize: 24.0 , fontWeight: FontWeight.bold)),
+                child: new Text('Brand X',
+                    style:
+                        TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold)),
               ),
             ],
           ),
@@ -288,17 +288,81 @@ class _ProductDetailsState extends State<ProductDetails> {
                 padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                 child: new Text(
                   'Product condition',
-                  style: TextStyle(fontSize: 20.0,color: Colors.grey),
+                  style: TextStyle(fontSize: 20.0, color: Colors.grey),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.all(15.0),
-                child: new Text('New' , style: TextStyle(fontSize: 24.0 , fontWeight: FontWeight.bold),),
+                child: new Text(
+                  'New',
+                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                ),
               ),
             ],
           ),
+          Divider(),
+          new ListTile(
+            title: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Similar products',
+                  style: TextStyle(fontSize: 26.0, color: Colors.black)),
+            ),
+            subtitle: new Container(
+              height: 360.0,
+              child: Similar_products(),
+            ),
+          )
         ],
       ),
     );
+  }
+}
+
+class Similar_products extends StatefulWidget {
+  @override
+  _Similar_productsState createState() => _Similar_productsState();
+}
+
+class _Similar_productsState extends State<Similar_products> {
+  var product_list = [
+    {
+      "name": "Blazer",
+      "picture": "images/products/blazer1.jpeg",
+      "old_price": 120,
+      "price": 85,
+    },
+    {
+      "name": "Hill",
+      "picture": "images/products/hills1.jpeg",
+      "old_price": 100,
+      "price": 80,
+    },
+    {
+      "name": "Shoe",
+      "picture": "images/products/hills2.jpeg",
+      "old_price": 100,
+      "price": 80,
+    },
+    {
+      "name": "Other",
+      "picture": "images/products/dress2.jpeg",
+      "old_price": 100,
+      "price": 80,
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+        itemCount: product_list.length,
+        gridDelegate:
+            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        itemBuilder: (BuildContext context, int index) {
+          return Single_Prod(
+              product_list[index]['name'],
+              product_list[index]['picture'],
+              product_list[index]['old_price'],
+              product_list[index]['price']);
+        });
   }
 }
